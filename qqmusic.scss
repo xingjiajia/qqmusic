@@ -1,0 +1,248 @@
+%reset{
+  margin: 0;
+  padding: 0;
+  border: 0;
+  display: block;
+
+}
+ul,li,h1,h2,h3,h4,h5,h6,p,div,a{
+  @extend %reset;
+  text-decoration: none;
+}
+@mixin position($top,$right,$bottom,$left){
+  position: absolute;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+}
+@mixin size($width,$height){
+  width: $width;
+  height: $height;
+}
+$img-position : (
+  'fold-bt' : 0 0,      /*左箭头*/
+  'open-list' : -222px -97px,    /*三横*/
+  'btn-lyrics' : -452px 0,      /*词*/
+  'music-radio' : -453px -55px,    /*单曲电台*/
+  'btn-like' : 0 -127px,      /*心*/
+  'btn-share' : -16px -127px,    /*分享*/
+  'prev-btn' : -69px 0,    /*上一首*/
+  'play' : -295px -97px,    /*播放*/
+  'next-btn' : -147px 0,    /*下一首*/
+  'play-btn' : -105px 0,     /*播放*/
+  'cycle-btn' : -219px 0,    /*循环*/
+  'volume-cha' : -147px -63px,/*静音*/
+  'volume-icon' : -189px -3px,  /*音量*/
+  'valume-op' : -366px 0,     /*圆点*/
+  'close-list' : -269px -97px,   /*下拉*/
+
+);
+$url : url(images/player_bg.png);
+@each $class-name in map-keys($img-position){
+  $off : map-get($img-position, $class-name);
+  #my-player .icon.#{$class-name}{
+    background: $url;
+    background-position: $off;
+  }
+}
+#my-player{
+  @include size(536px,115px)
+    position: fixed;
+    bottom: 20px;
+    left: -541px;
+    box-shadow: 3px 3px 6px rgba(0,0,0,.42);
+    border-radius: 4px;
+    z-index: 1;
+    left: 0;
+    .fold-bt{
+      display: block;
+      @include size(22px,115px)
+      border: 0;
+      @include position(0,null,null,100%)
+    }
+    .my-player-dock{
+      @include size(541px,115px)
+      background: #000;
+    }
+    .open-list{
+      @include size(47px,28px)
+      @include position(0,61px,null,null)
+      span{
+        @include size(24px,28px)
+        color: #FFF;
+        font-family: tahoma;
+        font-size: 11px;
+        line-height: 28px;
+        display: inline-block;
+        text-align: center;
+        margin-left: 23px;
+      }
+    }
+    .btn-lyrics{
+      @include size(14px,14px);
+      @include position(7px,37px,null,null)
+    }
+}
+.music-info{
+  @include size(541px,111px);
+  .music-pic{
+    @include size(90px,90px);
+    margin: 10px;
+    float: left;
+    overflow: hidden;
+  }
+  .music-info-main{
+    width: 300px;
+    font-family: tahoma;
+    float: left;
+    p{
+      margin: 5px 0;
+      height: 20px;
+      line-height: 20px;
+      font-size: 12px;
+    }
+    .music-name .music-name-t{
+      float: left;
+      max-width: 210px;
+      color: #fff;
+    }
+    .music-name .music-radio{
+      float: left;
+      @include size(75px,20px);
+      margin: 0 0 0 10px;
+    }
+    .singer-name{
+      color: #828282;
+    }
+    .play-date{
+      color: #595959;
+    }
+    .music-op strong{
+      display: inline-block;
+      @include size(16px,15px);
+      margin: 0 2px 0 0;
+      cursor: pointer;
+    }
+  }
+}
+.player-bar{
+  @include size(541px,4px);
+  @include position(null,null,0,0)
+  .player-bg-bar{
+    @include size(100%,4px);
+    background: #323232;
+  }
+  .current-bar{
+    @include size(10%,4px);
+    cursor: pointer;
+    background: #0cc65b;
+    @include position(null,null,0,0)
+  }
+  .progress-bar{
+    @include size(7px,6px);
+    @include position(null,null,-1px,10%);
+    z-index: 3;
+    background: url(images/progress_op.png);
+  }
+}
+.bar-op{
+  @include size(280px,42px);
+  @include position(43px,0,0,248px);
+  >li{
+    @include size(36px,28px);
+    float: left;
+    margin: 7px 0 0 3px;
+    cursor: pointer;
+  }
+  .play-btn{
+    @include size(42px,42px);
+    margin-top: 0;
+  }
+  .volume{
+    @include size(100px,24px);
+    margin: 10px 0 0 8px;
+    float: left;
+    .volume-icon{
+      @include size(24px,24px);
+      float: left;
+    }
+    .volume-regulate{
+      @include size(71px,3px);
+      background: #535353;
+      float: left;
+      margin: 9px 0 5px 5px;
+      position: relative;
+      .valume-bar{
+        @include size(10%,3px);
+        width: 0;
+        background: #8E8E8E;
+        @include position(null,null,0,0);
+      }
+      .valume-op{
+        @include size(6px,8px);
+        @include position(-4px,null,null,0);
+      }
+    }
+  }
+}
+.player-list-frame{
+  @include size(541px,507px);
+  @include position(-507px,0,0,null);
+  background: #1b1b1b;
+  box-shadow: 3px 3px 6px rgba(0,0,0,0.42);
+  .play-list-title{
+    background: #000;
+    ul>li a{
+      display: inline-block;
+      color: #FFF;
+      font-size: 18px;
+      font-family: "微软雅黑";
+      height: 52px;
+      background: #262626;
+      line-height: 52px;
+      padding: 0 20px;
+    }
+    .clear-list{
+      color: #999;
+      @include position(18px,31px,null,null)
+      cursor: pointer;
+      font-size: 12px;
+    }
+    .close-list{
+      display: inline-block;
+      @include size(20px,20px);
+      @include position(3px,7px,null,null)
+      cursor: pointer;
+    }
+  }
+  .play-list{
+    height: 455px;
+    overflow: scroll;
+    position: relative;
+    border-top: solid 1px #262626;
+    z-index: 1;
+    .play-list-main{
+      @include size(529px,800px);
+      li{
+        margin: 2px 0 3px 0;
+        padding-left: 20px;
+        line-height: 24px;
+        color: #999;
+        font-size: 12px;
+        cursor: pointer;
+      }
+      li .music-name{
+        display: inline-block;
+        vertical-align: top;
+        width: 254px;
+        overflow: hidden;
+      }
+      li .singer-name{
+        display: inline-block;
+        width: 180px;
+        overflow: hidden;
+      }
+    }
+  }
+}

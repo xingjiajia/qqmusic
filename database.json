@@ -1,0 +1,44 @@
+[
+  {
+    "filename": "./music/1.mp3",
+    "duration": "04:02",
+    "title": "尾戒",
+    "album": "推荐。",
+    "artist": "NOVA"
+  },
+  {
+    "filename": "./music/2.mp3",
+    "duration": "03:37",
+    "title": "想太多",
+    "album": "想太多",
+    "artist": "李玖哲"
+  },
+  {
+    "filename": "./music/3.mp3",
+    "duration": "05:14",
+    "title": "我和你一样",
+    "album": "我和你一样",
+    "artist": "李宇春"
+  },
+  {
+    "filename": "./music/4.mp3",
+    "duration": "03:30",
+    "title": "回旋木马的终端",
+    "album": "向左走，向右走",
+    "artist": "梁咏琪"
+  },
+  {
+    "filename": "./music/5.mp3",
+    "duration": "04:36",
+    "title": "错爱",
+    "album": "华丽冒险",
+    "artist": "刘涛"
+  },
+  {
+    "filename": "./music/6.mp3",
+    "duration": "03:34",
+    "title": "我很快乐",
+    "album": "°®Çé»¨Ô°",
+    "artist": "刘惜君"
+  }
+]
